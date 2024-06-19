@@ -3,15 +3,15 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 const app = express();
-const port = process.env.PORT || 3000; // Porta para a API
+const port = process.env.PORT || 3000; 
 
-app.get('/cotacoes', async (req, res) => {
+app.get('/cotacoes', async (req, res) => { 
   try {
     const response = await axios.get('http://www.casaalianca.com.br/site/cambio');
     const $ = cheerio.load(response.data);
 
-    // Substitua pelos seletores CSS corretos do site:
-    const cotacaoDolar = $('seletor_css_dolar').text().trim(); 
+    // Substitua pelos seletores corretos do site!
+    const cotacaoDolar = $('seletor_css_dolar').text().trim();
     const cotacaoEuro = $('seletor_css_euro').text().trim();
 
     res.json({ 
